@@ -4,10 +4,16 @@ import '../data/dummy_data.dart';
 
 /// Reusable card for displaying a group in the groups section.
 class GroupCard extends StatelessWidget {
-  const GroupCard({super.key, required this.group, this.onTap});
+  const GroupCard({
+    super.key,
+    required this.group,
+    this.onTap,
+    this.margin = const EdgeInsets.only(bottom: 10),
+  });
 
   final GroupInfo group;
   final VoidCallback? onTap;
+  final EdgeInsetsGeometry margin;
 
   static const double _avatarRadius = 22;
 
@@ -27,7 +33,7 @@ class GroupCard extends StatelessWidget {
     final balanceColor = _balanceColor(group.balance);
 
     return Card(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: margin,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
@@ -45,12 +51,15 @@ class GroupCard extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       group.name,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -73,6 +82,8 @@ class GroupCard extends StatelessWidget {
                     color: balanceColor,
                     height: 1.3,
                   ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
@@ -82,3 +93,4 @@ class GroupCard extends StatelessWidget {
     );
   }
 }
+
