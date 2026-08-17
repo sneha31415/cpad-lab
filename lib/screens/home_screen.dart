@@ -5,6 +5,7 @@ import '../widgets/activity_list_item.dart';
 import '../widgets/balance_summary_card.dart';
 import '../widgets/group_card.dart';
 import '../widgets/section_header.dart';
+import 'group_details_screen.dart';
 
 /// Main dashboard screen for SplitEase — Experiment 1 static UI.
 class HomeScreen extends StatefulWidget {
@@ -30,6 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
         duration: Duration(seconds: 2),
       ),
     );
+  }
+
+  void _openGoaTripDetails() {
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const GroupDetailsScreen()));
   }
 
   @override
@@ -59,7 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(right: 16),
             child: CircleAvatar(
               radius: 18,
-              backgroundColor: theme.colorScheme.primary.withValues(alpha: 0.12),
+              backgroundColor: theme.colorScheme.primary.withValues(
+                alpha: 0.12,
+              ),
               child: Text(
                 'S',
                 style: theme.textTheme.titleMedium?.copyWith(
@@ -113,14 +122,22 @@ class _HomeScreenState extends State<HomeScreen> {
               title: 'Your Groups',
               trailing: '${groups.length} groups',
             ),
-            ...groups.map((group) => GroupCard(group: group)),
+            ...groups.map(
+              (group) => GroupCard(
+                group: group,
+                onTap: group.name == 'Goa Trip' ? _openGoaTripDetails : null,
+              ),
+            ),
             const SizedBox(height: 20),
 
             // Recent activity section
             const SectionHeader(title: 'Recent Activity'),
             Card(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
                 child: Column(
                   children: [
                     for (int i = 0; i < recentActivities.length; i++) ...[

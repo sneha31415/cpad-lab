@@ -4,9 +4,10 @@ import '../data/dummy_data.dart';
 
 /// Reusable card for displaying a group in the groups section.
 class GroupCard extends StatelessWidget {
-  const GroupCard({super.key, required this.group});
+  const GroupCard({super.key, required this.group, this.onTap});
 
   final GroupInfo group;
+  final VoidCallback? onTap;
 
   static const double _avatarRadius = 22;
 
@@ -27,55 +28,55 @@ class GroupCard extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: _avatarRadius,
-              backgroundColor: group.iconColor.withValues(alpha: 0.12),
-              child: Icon(
-                group.icon,
-                color: group.iconColor,
-                size: 22,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: _avatarRadius,
+                backgroundColor: group.iconColor.withValues(alpha: 0.12),
+                child: Icon(group.icon, color: group.iconColor, size: 22),
               ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    group.name,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w600,
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      group.name,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '${group.members} members',
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
+                    const SizedBox(height: 4),
+                    Text(
+                      '${group.members} members',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 12),
-            SizedBox(
-              width: 96,
-              child: Text(
-                group.balance,
-                textAlign: TextAlign.right,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: balanceColor,
-                  height: 1.3,
+                  ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(width: 12),
+              SizedBox(
+                width: 96,
+                child: Text(
+                  group.balance,
+                  textAlign: TextAlign.right,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: balanceColor,
+                    height: 1.3,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

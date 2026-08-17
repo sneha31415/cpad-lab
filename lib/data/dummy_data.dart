@@ -76,6 +76,127 @@ const groups = [
   ),
 ];
 
+/// Member in a group — static data for Experiment 2 Group Details screen.
+class MemberInfo {
+  const MemberInfo({
+    required this.name,
+    required this.initial,
+    required this.balance,
+    required this.isCurrentUser,
+  });
+
+  final String name;
+  final String initial;
+  final String balance;
+  final bool isCurrentUser;
+}
+
+/// Expense entry within a group — static data for Experiment 2.
+class GroupExpenseInfo {
+  const GroupExpenseInfo({
+    required this.description,
+    required this.amount,
+    required this.date,
+    required this.paidBy,
+    required this.icon,
+  });
+
+  final String description;
+  final String amount;
+  final String date;
+  final String paidBy;
+  final IconData icon;
+}
+
+/// Summary of total group expenses — static data for Experiment 2.
+class GroupExpenseSummary {
+  const GroupExpenseSummary({
+    required this.totalExpenses,
+    required this.yourShare,
+    required this.memberCount,
+  });
+
+  final String totalExpenses;
+  final String yourShare;
+  final int memberCount;
+}
+
+const goaTripExpenseSummary = GroupExpenseSummary(
+  totalExpenses: '₹12,450.00',
+  yourShare: '₹320.00 owed',
+  memberCount: 6,
+);
+
+const goaTripMembers = [
+  MemberInfo(
+    name: 'Sneha',
+    initial: 'S',
+    balance: 'You owe ₹320',
+    isCurrentUser: true,
+  ),
+  MemberInfo(
+    name: 'Rahul',
+    initial: 'R',
+    balance: 'Owes ₹150',
+    isCurrentUser: false,
+  ),
+  MemberInfo(
+    name: 'Priya',
+    initial: 'P',
+    balance: 'Owes ₹200',
+    isCurrentUser: false,
+  ),
+  MemberInfo(
+    name: 'Amit',
+    initial: 'A',
+    balance: 'Settled up',
+    isCurrentUser: false,
+  ),
+  MemberInfo(
+    name: 'Neha',
+    initial: 'N',
+    balance: 'Is owed ₹470',
+    isCurrentUser: false,
+  ),
+  MemberInfo(
+    name: 'Karan',
+    initial: 'K',
+    balance: 'Settled up',
+    isCurrentUser: false,
+  ),
+];
+
+const goaTripExpenses = [
+  GroupExpenseInfo(
+    description: 'Dinner at Spice Garden',
+    amount: '₹1,800.00',
+    date: 'Today',
+    paidBy: 'Neha',
+    icon: Icons.restaurant_rounded,
+  ),
+  GroupExpenseInfo(
+    description: 'Cab to airport',
+    amount: '₹600.00',
+    date: 'Yesterday',
+    paidBy: 'Rahul',
+    icon: Icons.local_taxi_rounded,
+  ),
+  GroupExpenseInfo(
+    description: 'Beach resort booking',
+    amount: '₹8,500.00',
+    date: 'Mon, 4 Aug',
+    paidBy: 'Priya',
+    icon: Icons.beach_access_rounded,
+  ),
+  GroupExpenseInfo(
+    description: 'Snacks & drinks',
+    amount: '₹550.00',
+    date: 'Sun, 3 Aug',
+    paidBy: 'Sneha',
+    icon: Icons.local_cafe_rounded,
+  ),
+];
+
 const recentActivities = [
   ActivityInfo(
     title: 'Dinner at Spice Garden',
